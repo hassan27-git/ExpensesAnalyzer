@@ -1,0 +1,15 @@
+what i am doing 
+MySql Database
+
+
+This creates a table with:
+
+id → unique ID for each expense
+
+item_name → name of the expense
+
+amount → expense amount
+
+category → type of expense
+
+date_added → date of expense

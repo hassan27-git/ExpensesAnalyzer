@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Expense Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>Personal Expense Analyzer</h1>
+        <p>Track • Analyze • Control</p>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <div class="main">
+
+        <!-- LEFT COLUMN -->
+        <div class="left">
+
+            <!-- FORM -->
+            <section class="card">
+                <h2>Add Expense</h2>
+
+                <form action="addExpenses" method="post">
+                    <input type="text" name="itemName" placeholder="Item name" required>
+                    <input type="number" name="amount" placeholder="Amount" required>
+
+                    <select name="category" required>
+                        <option value="">Select category</option>
+                        <option>Food</option>
+                        <option>Travel</option>
+                        <option>Shopping</option>
+                        <option>Bills</option>
+                    </select>
+
+                    <input type="date" name="date" required>
+
+                    <button type="submit">Add Expense</button>
+                </form>
+            </section>
+
+            <!-- SUMMARY -->
+            <section class="summary-wrapper">
+
+                <!-- TOP SUMMARY -->
+                <div class="summary-top">
+                    <div class="summary-card">
+                        <h3>Total Expenses</h3>
+                        <p>₹ 0</p>
+                    </div>
+
+                    <div class="summary-card">
+                        <h3>This Month</h3>
+                        <p>₹ 0</p>
+                    </div>
+                </div>
+
+                <!-- CATEGORY BREAKDOWN -->
+                <div class="summary-bottom">
+                    <h4>Category Breakdown</h4>
+                    <ul>
+                        <li>Food <span>₹ 0</span></li>
+                        <li>Travel <span>₹ 0</span></li>
+                        <li>Bills <span>₹ 0</span></li>
+                        <li>Shopping <span>₹ 0</span></li>
+                    </ul>
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="right">
+            <section class="card">
+                <h2>Recent Expenses</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

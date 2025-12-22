@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    color: #222;
+}
+
+.header p {
+    color: #666;
+}
+
+/* MAIN LAYOUT */
+.main {
+    display: flex;
+    gap: 25px;
+    flex: 1; /* fill remaining height */
+}
+
+/* LEFT COLUMN (fixed) */
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden; /* prevent left from scrolling */
+}
+
+/* RIGHT COLUMN (scrollable) */
+.right {
+    flex: 2;
+    overflow-y: auto;
+}
+
+/* CARDS (FORM + SUMMARY + TABLE) */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+form input,
+form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+form button {
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #43a047;
+}
+
+/* SUMMARY CARDS */
+.summary-top {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.summary-card {
+    flex: 1;
+    text-align: center;
+}
+
+.summary-card h3 {
+    font-size: 14px;
+    color: #555;
+}
+
+.summary-card p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* CATEGORY BREAKDOWN */
+.summary-bottom h4 {
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 14px;
+}
+
+.summary-bottom ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.summary-bottom li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+th {
+    background: #f7f7f7;
+    font-weight: 600;
+}
