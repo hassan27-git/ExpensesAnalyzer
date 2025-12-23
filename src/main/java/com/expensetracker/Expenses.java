@@ -47,7 +47,7 @@ public class Expenses {
     public void SaveToDatabase() {
         String url = "jdbc:mysql://localhost:3306/expense_tracker?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
         String user = "root";
-        String password = "root123";
+        String password = "yourPassword";
         String sql = "INSERT INTO expenses (item_name, amount, category, date_added) VALUES (?, ?, ?, ?)";
 
         try {
@@ -59,10 +59,10 @@ public class Expenses {
             return;
         }
 
+        
+//        making connection with database
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            System.out.println("Connecting to database...");
 
             stmt.setString(1, this.itemName);
             stmt.setDouble(2, this.amount);
