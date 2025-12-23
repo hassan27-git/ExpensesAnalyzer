@@ -1,16 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.expensetracker.Expenses" %>
+
 <%
-    // Retrieve the expenses list from request attribute
     List<Expenses> expenses = (List<Expenses>) request.getAttribute("expenses");
+
+    double totalAmount   = (Double) request.getAttribute("totalAmount");
+    double monthTotal    = (Double) request.getAttribute("monthTotal");
+    double foodTotal     = (Double) request.getAttribute("foodTotal");
+    double travelTotal   = (Double) request.getAttribute("travelTotal");
+    double billsTotal    = (Double) request.getAttribute("billsTotal");
+    double shoppingTotal = (Double) request.getAttribute("shoppingTotal");
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Personal Expense Analyzer</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/style.css">
 </head>
 <body>
 
@@ -45,7 +53,6 @@
                     </select>
 
                     <input type="date" name="date" required>
-
                     <button type="submit">Add Expense</button>
                 </form>
             </section>
@@ -53,63 +60,21 @@
             <!-- SUMMARY -->
             <section class="summary-wrapper">
 
-                <!-- TOP SUMMARY -->
                 <div class="summary-top">
                     <div class="summary-card">
                         <h3>Total Expenses</h3>
-                        <p>
-                            ₹ 
-                            <%
-                                double total = 0;
-                                if(expenses != null){
-                                    for(Expenses e : expenses){
-                                        total += e.getAmount();
-                                    }
-                                }
-                                out.print(total);
-                            %>
-                        </p>
+                        <p>₹ <%= totalAmount %></p>
                     </div>
 
                     <div class="summary-card">
                         <h3>This Month</h3>
-                        <p>
-                            ₹ 
-                            <%
-                                double monthTotal = 0;
-                                java.time.LocalDate now = java.time.LocalDate.now();
-                                if(expenses != null){
-                                    for(Expenses e : expenses){
-                                        java.time.LocalDate expenseDate = java.time.LocalDate.parse(e.getDate());
-                                        if(expenseDate.getMonthValue() == now.getMonthValue() &&
-                                           expenseDate.getYear() == now.getYear()){
-                                            monthTotal += e.getAmount();
-                                        }
-                                    }
-                                }
-                                out.print(monthTotal);
-                            %>
-                        </p>
+                        <p>₹ <%= monthTotal %></p>
                     </div>
                 </div>
 
-                <!-- CATEGORY BREAKDOWN -->
                 <div class="summary-bottom">
                     <h4>Category Breakdown</h4>
                     <ul>
-                        <%
-                            double foodTotal = 0, travelTotal = 0, billsTotal = 0, shoppingTotal = 0;
-                            if(expenses != null){
-                                for(Expenses e : expenses){
-                                    switch(e.getCategory()){
-                                        case "Food": foodTotal += e.getAmount(); break;
-                                        case "Travel": travelTotal += e.getAmount(); break;
-                                        case "Bills": billsTotal += e.getAmount(); break;
-                                        case "Shopping": shoppingTotal += e.getAmount(); break;
-                                    }
-                                }
-                            }
-                        %>
                         <li>Food <span>₹ <%= foodTotal %></span></li>
                         <li>Travel <span>₹ <%= travelTotal %></span></li>
                         <li>Bills <span>₹ <%= billsTotal %></span></li>
@@ -136,26 +101,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%
-                            if(expenses != null){
-                                for(Expenses e : expenses){
-                        %>
+
+                    <%
+                        if (expenses != null && !expenses.isEmpty()) {
+                            for (Expenses e : expenses) {
+                    %>
                         <tr>
                             <td><%= e.getDate() %></td>
                             <td><%= e.getItemName() %></td>
                             <td><%= e.getCategory() %></td>
                             <td>₹ <%= e.getAmount() %></td>
                         </tr>
-                        <%
-                                }
-                            } else {
-                        %>
-                        <tr>
-                            <td colspan="4" style="text-align:center;">No expenses found.</td>
-                        </tr>
-                        <%
+                    <%
                             }
-                        %>
+                        } else {
+                    %>
+                        <tr>
+                            <td colspan="4" style="text-align:center;">
+                                No expenses found
+                            </td>
+                        </tr>
+                    <%
+                        }
+                    %>
+
                     </tbody>
                 </table>
             </section>
